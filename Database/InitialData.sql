@@ -87,14 +87,15 @@ WHERE IdTourist='43'
 
 INSERT INTO Orders (TourId, GroupId, OrderDate, PaymentDate, Status, PaymentStatus)
 VALUES  ('1','1','20180330','20180404','Документы не готовы','Оплачен'),
-		('3','2','20180415',NULL,'Ожидает подтверждения','Не оплачен'),
-		('7','3','20180413',NULL,'Подтвержден','Не оплачен'),
+		('3','2','20180415', NULL,'Ожидает подтверждения','Не оплачен'),
+		('7','3','20180413', NULL,'Подтвержден','Не оплачен'),
 		('2','4','20180222','20180304','Готов','Оплачен'),
 		('9','5','20171114','20171129','Документы не готовы','Оплачен')
 
-INSERT INTO LoginPassword(LoginName, Pass)
-VALUES  ('Admin','2345'),
-		('Manager1','1')
+INSERT INTO Staff (UserType, FirstName, LastName, Pass)
+VALUES  ('Руководитель','Вадим','Соколов','2345'),
+		('Менеджер','Мария','Абрамова','2'),
+		('Менеджер','Алина','Новикова','3');
 
 SELECT * FROM Tour
 SELECT * FROM Accommodation
@@ -104,4 +105,4 @@ SELECT * FROM Insurance
 SELECT * FROM TouristGroup
 SELECT * FROM Tourist
 SELECT * FROM Orders
-SELECT * FROM LoginPassword
+SELECT * FROM Staff

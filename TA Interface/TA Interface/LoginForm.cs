@@ -16,66 +16,79 @@ namespace TA_Interface
         public LoginForm()
         {
             InitializeComponent();
-            string way = "Data Source=VICKY-PC\\SQLEXPRESS;Initial Catalog=TravelAgency;Integrated Security=True";
-            SqlConnection conn = new SqlConnection(way);
-            conn.Open();
-            SqlCommand askLogin = new SqlCommand("SELECT * from LoginPassword", conn);
-            SqlDataReader rdr = askLogin.ExecuteReader();
-
-            /*while (rdr.Read())
-            {
-                comboBox1.Items.Add(rdr[1]);
-            }*/
-
             string[] users = { "Руководитель", "Менеджер", "Турист" };
             UserComboBox.Items.AddRange(users);
-
-            if (rdr != null) rdr.Close();
-            if (conn != null) conn.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if ((UserComboBox.Text != "Руководитель") && (UserComboBox.Text != "Менеджер") && (UserComboBox.Text != "Турист"))
-            {
-                MessageBox.Show("Неправильно выбран пользователь!");
-            }
+            string way = "Data Source=VICKY-PC\\SQLEXPRESS;Initial Catalog=TravelAgency;Integrated Security=True";
+            string tableName = null;
+
+            if (UserComboBox.Text == "Руководитель" || UserComboBox.Text == "Менеджер")
+                tableName = "SELECT * FROM Staff";
+            else if (UserComboBox.Text == "Турист")
+                tableName = "SELECT * FROM TouristGroup";
             else
             {
-                string way = "Data Source=VICKY-PC\\SQLEXPRESS;Initial Catalog=TravelAgency;Integrated Security=True";
-                SqlConnection conn = new SqlConnection(way);
-                conn.Open();
-                SqlCommand askLogin = new SqlCommand("SELECT * from LoginPassword", conn);
-                SqlDataReader rdr = askLogin.ExecuteReader();
-
-                if (UserComboBox.Text == "Руководитель" && PasswordTextBox.Text == "1")
-                {
-                    this.Hide();
-                    HeadForm newHeadForm = new HeadForm();
-                    newHeadForm.Closed += (s, args) => this.Close();
-                    newHeadForm.Show();
-
-                }
-                else if (UserComboBox.Text == "Менеджер" && PasswordTextBox.Text == "2")
-                {
-                    this.Hide();
-                    ManagerForm newManagerForm = new ManagerForm();
-                    newManagerForm.Closed += (s, args) => this.Close();
-                    newManagerForm.Show();
-
-                }
-                else if (UserComboBox.Text == "Турист" && PasswordTextBox.Text == "3")
-                {
-                    this.Hide();
-                    TouristForm newTouristForm = new TouristForm();
-                    newTouristForm.Closed += (s, args) => this.Close();
-                    newTouristForm.Show();
-                }
-                else MessageBox.Show("Неверный пароль или фамилия");
-
-                if (rdr != null) rdr.Close();
-                if (conn != null) conn.Close();
+                MessageBox.Show("Неправильно выбран пользователь!");
+                return;
             }
+  
+            SqlConnection conn = new SqlConnection(way);
+            conn.Open();
+            SqlCommand askLogin = new SqlCommand(tableName, conn);
+            SqlDataReader rdr = askLogin.ExecuteReader();
+
+            string password = null;
+            while (rdr.Read())
+            {
+                if (UserComboBox.Text == rdr[1].ToString() && LastNameTextBox.Text == rdr[3].ToString())
+                    password = rdr[4].ToString(); //check User with this Lastname
+                else if (UserComboBox.Text == "Турист" && LastNameTextBox.Text == rdr[2].ToString())
+                    password = rdr[0].ToString(); //tourist password = num of group
+            }
+
+            if (password == null)
+            {
+                MessageBox.Show("Данного пользователя не существует.");
+                return;
+            }
+            else if (password != PasswordTextBox.Text)
+            {
+                MessageBox.Show("Неверный пароль!");
+                return;
+            }
+
+            switch (UserComboBox.Text)
+            {
+                case "Руководитель":
+                    {
+                        this.Hide();
+                        HeadForm newHeadForm = new HeadForm();
+                        newHeadForm.Closed += (s, args) => this.Close();
+                        newHeadForm.Show();
+                        break;
+                    }
+                case "Менеджер":
+                    {
+                        this.Hide();
+                        ManagerForm newManagerForm = new ManagerForm();
+                        newManagerForm.Closed += (s, args) => this.Close();
+                        newManagerForm.Show();
+                        break;
+                    }
+                case "Турист":
+                    {
+                        this.Hide();
+                        TouristForm newTouristForm = new TouristForm();
+                        newTouristForm.Closed += (s, args) => this.Close();
+                        newTouristForm.Show();
+                        break;
+                    }
+            }
+            if (rdr != null) rdr.Close();
+            if (conn != null) conn.Close();
         }
     }
 }

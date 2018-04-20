@@ -163,11 +163,13 @@ DROP CONSTRAINT FK_Orders_Tour
 drop table Orders
 -- ------------------------------------
 
-CREATE TABLE LoginPassword 
+CREATE TABLE Staff
 (
 IdLoginPassword BIGINT IDENTITY (1,1) CONSTRAINT
 									PK_LoginPassword PRIMARY KEY,
-LoginName VARCHAR (20) NOT NULL,
+UserType VARCHAR (20) NOT NULL,
+FirstName VARCHAR (20) NOT NULL,
+LastName VARCHAR (20) NOT NULL,
 Pass VARCHAR (20) NOT NULL,
-Unique (LoginName)
+Unique (UserType, LastName)
 );
