@@ -31,26 +31,27 @@
             this.ChooseTourGridView = new System.Windows.Forms.DataGridView();
             this.ManagerMenu = new System.Windows.Forms.TabControl();
             this.ChooseTourPage = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.QuitButton = new System.Windows.Forms.Button();
-            this.HeaderLabel = new System.Windows.Forms.Label();
-            this.TourInfoButton = new System.Windows.Forms.Button();
-            this.AirlineInfo = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBoxCountry = new System.Windows.Forms.ComboBox();
-            this.comboBoxCity = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ExtendedSearchButton = new System.Windows.Forms.Button();
+            this.numOfTouristsField = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
+            this.SearchTourButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.TourInfoButton = new System.Windows.Forms.Button();
+            this.HeaderLabel = new System.Windows.Forms.Label();
+            this.QuitButton = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ComboBoxCountry = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.ChooseTourGridView)).BeginInit();
             this.ManagerMenu.SuspendLayout();
             this.ChooseTourPage.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numOfTouristsField)).BeginInit();
             this.SuspendLayout();
             // 
             // ChooseTourGridView
@@ -77,8 +78,8 @@
             // 
             // ChooseTourPage
             // 
+            this.ChooseTourPage.Controls.Add(this.label8);
             this.ChooseTourPage.Controls.Add(this.panel1);
-            this.ChooseTourPage.Controls.Add(this.AirlineInfo);
             this.ChooseTourPage.Controls.Add(this.TourInfoButton);
             this.ChooseTourPage.Controls.Add(this.HeaderLabel);
             this.ChooseTourPage.Controls.Add(this.QuitButton);
@@ -91,33 +92,101 @@
             this.ChooseTourPage.Text = "Подбор тура";
             this.ChooseTourPage.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // label8
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(192, 74);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(626, 413);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "label8";
             // 
-            // QuitButton
+            // panel1
             // 
-            this.QuitButton.Location = new System.Drawing.Point(19, 409);
-            this.QuitButton.Name = "QuitButton";
-            this.QuitButton.Size = new System.Drawing.Size(75, 23);
-            this.QuitButton.TabIndex = 11;
-            this.QuitButton.Text = "Выйти";
-            this.QuitButton.UseVisualStyleBackColor = true;
-            this.QuitButton.Click += new System.EventHandler(this.QuitButton_Click);
+            this.panel1.Controls.Add(this.dateTimePicker2);
+            this.panel1.Controls.Add(this.ComboBoxCountry);
+            this.panel1.Controls.Add(this.ExtendedSearchButton);
+            this.panel1.Controls.Add(this.numOfTouristsField);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.dateTimePicker1);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.SearchTourButton);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(599, 32);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(246, 360);
+            this.panel1.TabIndex = 15;
             // 
-            // HeaderLabel
+            // ExtendedSearchButton
             // 
-            this.HeaderLabel.AutoSize = true;
-            this.HeaderLabel.Location = new System.Drawing.Point(16, 3);
-            this.HeaderLabel.Name = "HeaderLabel";
-            this.HeaderLabel.Size = new System.Drawing.Size(0, 13);
-            this.HeaderLabel.TabIndex = 12;
+            this.ExtendedSearchButton.Location = new System.Drawing.Point(124, 198);
+            this.ExtendedSearchButton.Name = "ExtendedSearchButton";
+            this.ExtendedSearchButton.Size = new System.Drawing.Size(119, 30);
+            this.ExtendedSearchButton.TabIndex = 20;
+            this.ExtendedSearchButton.Text = "Расширенный поиск";
+            this.ExtendedSearchButton.UseVisualStyleBackColor = true;
+            this.ExtendedSearchButton.Click += new System.EventHandler(this.ExtendedSearchButton_Click);
+            // 
+            // numOfTouristsField
+            // 
+            this.numOfTouristsField.Location = new System.Drawing.Point(121, 108);
+            this.numOfTouristsField.Name = "numOfTouristsField";
+            this.numOfTouristsField.Size = new System.Drawing.Size(120, 20);
+            this.numOfTouristsField.TabIndex = 19;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(1, 115);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(114, 13);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Количество туристов";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(121, 45);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(121, 20);
+            this.dateTimePicker1.TabIndex = 15;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 52);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(71, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Дата начала";
+            // 
+            // SearchTourButton
+            // 
+            this.SearchTourButton.Location = new System.Drawing.Point(166, 148);
+            this.SearchTourButton.Name = "SearchTourButton";
+            this.SearchTourButton.Size = new System.Drawing.Size(77, 30);
+            this.SearchTourButton.TabIndex = 12;
+            this.SearchTourButton.Text = "Найти";
+            this.SearchTourButton.UseVisualStyleBackColor = true;
+            this.SearchTourButton.Click += new System.EventHandler(this.SearchTourButton_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 84);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(89, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Дата окончания";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Страна";
             // 
             // TourInfoButton
             // 
@@ -129,115 +198,48 @@
             this.TourInfoButton.UseVisualStyleBackColor = true;
             this.TourInfoButton.Click += new System.EventHandler(this.TourInfoButton_Click);
             // 
-            // AirlineInfo
+            // HeaderLabel
             // 
-            this.AirlineInfo.Location = new System.Drawing.Point(599, 406);
-            this.AirlineInfo.Name = "AirlineInfo";
-            this.AirlineInfo.Size = new System.Drawing.Size(170, 38);
-            this.AirlineInfo.TabIndex = 14;
-            this.AirlineInfo.Text = "Информация об Авиакомпании";
-            this.AirlineInfo.UseVisualStyleBackColor = true;
-            this.AirlineInfo.Click += new System.EventHandler(this.AirlineInfo_Click);
+            this.HeaderLabel.AutoSize = true;
+            this.HeaderLabel.Location = new System.Drawing.Point(16, 3);
+            this.HeaderLabel.Name = "HeaderLabel";
+            this.HeaderLabel.Size = new System.Drawing.Size(0, 13);
+            this.HeaderLabel.TabIndex = 12;
             // 
-            // panel1
+            // QuitButton
             // 
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.comboBox1);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.comboBoxCity);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.comboBoxCountry);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(599, 32);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(246, 360);
-            this.panel1.TabIndex = 15;
+            this.QuitButton.Location = new System.Drawing.Point(19, 409);
+            this.QuitButton.Name = "QuitButton";
+            this.QuitButton.Size = new System.Drawing.Size(75, 23);
+            this.QuitButton.TabIndex = 11;
+            this.QuitButton.Text = "Выйти";
+            this.QuitButton.UseVisualStyleBackColor = true;
+            this.QuitButton.Click += new System.EventHandler(this.QuitButton_Click);
             // 
-            // label1
+            // tabPage2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Страна";
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(853, 452);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // comboBoxCountry
+            // ComboBoxCountry
             // 
-            this.comboBoxCountry.FormattingEnabled = true;
-            this.comboBoxCountry.Location = new System.Drawing.Point(122, 13);
-            this.comboBoxCountry.Name = "comboBoxCountry";
-            this.comboBoxCountry.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxCountry.TabIndex = 1;
+            this.ComboBoxCountry.FormattingEnabled = true;
+            this.ComboBoxCountry.Location = new System.Drawing.Point(120, 11);
+            this.ComboBoxCountry.Name = "ComboBoxCountry";
+            this.ComboBoxCountry.Size = new System.Drawing.Size(121, 21);
+            this.ComboBoxCountry.TabIndex = 21;
             // 
-            // comboBoxCity
+            // dateTimePicker2
             // 
-            this.comboBoxCity.FormattingEnabled = true;
-            this.comboBoxCity.Location = new System.Drawing.Point(122, 40);
-            this.comboBoxCity.Name = "comboBoxCity";
-            this.comboBoxCity.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxCity.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 43);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Город";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 113);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Цена (рубли)";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(122, 113);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 20);
-            this.textBox2.TabIndex = 7;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 79);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(91, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Тип проживания";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(122, 76);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 9;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(180, 180);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(63, 20);
-            this.textBox1.TabIndex = 11;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 183);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(111, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Продолжительность";
+            this.dateTimePicker2.Location = new System.Drawing.Point(120, 77);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(121, 20);
+            this.dateTimePicker2.TabIndex = 22;
             // 
             // ManagerForm
             // 
@@ -253,6 +255,7 @@
             this.ChooseTourPage.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numOfTouristsField)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -266,17 +269,17 @@
         private System.Windows.Forms.Button QuitButton;
         private System.Windows.Forms.Label HeaderLabel;
         private System.Windows.Forms.Button TourInfoButton;
-        private System.Windows.Forms.Button AirlineInfo;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBoxCity;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBoxCountry;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button SearchTourButton;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown numOfTouristsField;
+        private System.Windows.Forms.Button ExtendedSearchButton;
+        public System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox ComboBoxCountry;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
     }
 }
