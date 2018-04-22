@@ -39,8 +39,6 @@
             this.ShowButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.TableComboBox = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.TableNameLabel = new System.Windows.Forms.Label();
             this.GridViewPage1 = new System.Windows.Forms.DataGridView();
@@ -69,7 +67,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(657, 64);
+            this.button1.Location = new System.Drawing.Point(670, 71);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(77, 36);
             this.button1.TabIndex = 8;
@@ -79,16 +77,16 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 16);
+            this.label1.Location = new System.Drawing.Point(17, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 7;
-            this.label1.Text = "label1";
+            this.label1.Text = "Запрос:";
             // 
             // TourOpGridView
             // 
             this.TourOpGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TourOpGridView.Location = new System.Drawing.Point(34, 54);
+            this.TourOpGridView.Location = new System.Drawing.Point(20, 55);
             this.TourOpGridView.Name = "TourOpGridView";
             this.TourOpGridView.Size = new System.Drawing.Size(486, 173);
             this.TourOpGridView.TabIndex = 4;
@@ -133,17 +131,15 @@
             this.panel1.Controls.Add(this.ShowButton);
             this.panel1.Controls.Add(this.SaveButton);
             this.panel1.Controls.Add(this.TableComboBox);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Location = new System.Drawing.Point(594, 32);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(232, 163);
+            this.panel1.Size = new System.Drawing.Size(232, 89);
             this.panel1.TabIndex = 10;
             // 
             // ShowButton
             // 
-            this.ShowButton.Location = new System.Drawing.Point(64, 124);
+            this.ShowButton.Location = new System.Drawing.Point(53, 49);
             this.ShowButton.Name = "ShowButton";
             this.ShowButton.Size = new System.Drawing.Size(75, 23);
             this.ShowButton.TabIndex = 13;
@@ -153,7 +149,7 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(154, 124);
+            this.SaveButton.Location = new System.Drawing.Point(134, 49);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
             this.SaveButton.TabIndex = 9;
@@ -168,22 +164,6 @@
             this.TableComboBox.Name = "TableComboBox";
             this.TableComboBox.Size = new System.Drawing.Size(133, 21);
             this.TableComboBox.TabIndex = 8;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(77, 53);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(133, 20);
-            this.textBox2.TabIndex = 5;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 56);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "label2";
             // 
             // label3
             // 
@@ -260,8 +240,6 @@
         private System.Windows.Forms.Button ShowButton;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.ComboBox TableComboBox;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label TableNameLabel;
         private System.Windows.Forms.DataGridView GridViewPage1;

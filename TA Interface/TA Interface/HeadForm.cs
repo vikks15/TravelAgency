@@ -18,13 +18,15 @@ namespace TA_Interface
         DataSet data;
         SqlCommandBuilder commBuild;
         string tableName;
+        string[] headerNames;
+        string query = "";
+        int numOfColumns = 0;
 
         public HeadForm()
         {
             InitializeComponent();
-            string[] tables = { "Туры", "Проживаниие", "Авиакомпании", "Страхование" };
-            TableComboBox.Items.AddRange(tables);
-
+            string[] tables = { "Туры", "Проживание", "Авиакомпании", "Страхование" };
+            TableComboBox.Items.AddRange(tables);         
         }
 
         private void Menu_SelectedIndexChanged()
@@ -37,23 +39,15 @@ namespace TA_Interface
         {
             //GridViewPage1.Rows.Clear(); --вариант 1
             GridViewPage1.DataSource = null;
-            GridViewPage1.ColumnHeadersVisible = true;
-            string[] headerNames = new string[10];
-            string query = "";
-            int numOfColumns = 0;
+            GridViewPage1.ColumnHeadersVisible = true;           
 
             switch (TableComboBox.Text)
             {
                 case "Туры":
                     {                        
-                        TableNameLabel.Text = "Туры";
-                        /*query = @"SELECT IdTour, Country, City, BeginDate, EndDate, Price, TourOpName, AirlineName, AcName, CompanyName
-                                    FROM Tour, TourOperator, Airline, Accommodation, Insurance
-                                    WHERE (TourOpId = IdTourOperator) AND (AirlineId = IdAirline) AND (AccommodationId = IdAccommodation) AND (InsuranceId = IdInsurance)";*/
+                        TableNameLabel.Text = "Туры";                        
                         query = "SELECT * FROM Tour";  
-                        string[] tmp = { "ID", "Страна", "Город, место", "Дата начала", "Дата окончания", "Цена", "Туроператор", "Авиакомпания", "Проживание", "Страховка" };
-                        
-                        headerNames = tmp;
+                        headerNames = new string[] { "ID", "Страна", "Город, место", "Дата начала", "Дата окончания", "Цена", "Туроператор", "Авиакомпания", "Проживание", "Страховка" };
                         tableName = "TourTable";
                         numOfColumns = 10;                    
                        
@@ -67,9 +61,8 @@ namespace TA_Interface
                 case "Проживаниие":
                     {
                         TableNameLabel.Text = "Проживание";
-                        query = "SELECT * FROM Accommodation";                      
-                        string[] tmp = { "ID", "Название", "Категория", "Количество звезд", "Питание", "Опции", "Телефон", "Адрес"};
-                        headerNames = tmp;
+                        query = "SELECT * FROM Accommodation";
+                        headerNames = new string[]{ "ID", "Название", "Категория", "Количество звезд", "Питание", "Опции", "Телефон", "Адрес" };
                         tableName = "AcTable";
                         numOfColumns = 8;                        
                         break;
@@ -77,9 +70,8 @@ namespace TA_Interface
                 case "Авиакомпании":
                     {
                         TableNameLabel.Text = "Авиакомпании";
-                        query = "SELECT * FROM Airline Order By IdAirline";                      
-                        string[] tmp = { "ID", "Название", "Класс"};
-                        headerNames = tmp;
+                        query = "SELECT * FROM Airline Order By IdAirline";
+                        headerNames = new string[]{ "ID", "Название", "Класс" };
                         tableName = "AirlineTable";
                         numOfColumns = 3;                       
                         break;
@@ -88,8 +80,7 @@ namespace TA_Interface
                     {
                         TableNameLabel.Text = "Страхование";
                         query = "SELECT * FROM Insurance Order By IdInsurance";
-                        string[] tmp = { "ID", "Название компании", "Тип тура", "Категория страхования"};
-                        headerNames = tmp;
+                        headerNames = new string[]{ "ID", "Название компании", "Тип тура", "Категория страхования" };
                         tableName = "InsuranceTable";
                         numOfColumns = 4;                        
                         break;
@@ -108,9 +99,9 @@ namespace TA_Interface
                 conn.Open();
                 adap = new SqlDataAdapter(query, conn);
                 data = new System.Data.DataSet();
-                adap.Fill(data, tableName);
-                
+                adap.Fill(data, tableName);                               
                 GridViewPage1.DataSource = data.Tables[0];
+                GridViewPage1.Columns[0].ReadOnly = true;
 
                 for (int i = 0; i < numOfColumns; ++i)
                     GridViewPage1.Columns[i].HeaderText = headerNames[i];
@@ -148,10 +139,26 @@ namespace TA_Interface
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            if (TableNameLabel.Text != TableComboBox.Text)
+            {
+                MessageBox.Show("Для сохранения переключитесь на нужную таблицу.");
+                return;
+            }
+
             try
             {
+                
                 commBuild = new SqlCommandBuilder(adap);
                 adap.Update(data, tableName);
+                //---------------Обновление------------------------------
+                GridViewPage1.DataSource = null;
+                adap = new SqlDataAdapter(query, conn);
+                data = new System.Data.DataSet();
+                adap.Fill(data, tableName);
+                GridViewPage1.DataSource = data.Tables[0];
+                for (int i = 0; i < numOfColumns; ++i)
+                    GridViewPage1.Columns[i].HeaderText = headerNames[i];
+                //---------------------------------------------------------
                 MessageBox.Show("Данные сохранены!");
             }
             catch
@@ -162,7 +169,11 @@ namespace TA_Interface
 
         private void QuitButton_Click(object sender, EventArgs e)
         {
-            if (conn != null) conn.Close();
+            if (conn != null) conn.Close();            
+            this.Hide();
+            LoginForm newHeadForm = new LoginForm();
+            newHeadForm.Closed += (s, args) => this.Close();
+            newHeadForm.Show();
         }
     }
 }

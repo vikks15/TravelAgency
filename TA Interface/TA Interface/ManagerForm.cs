@@ -13,40 +13,80 @@ namespace TA_Interface
 {
     public partial class ManagerForm : Form
     {
+        SqlConnection conn;
+        SqlDataReader rdr;
         public ManagerForm()
         {
             InitializeComponent();
+            ChooseTourGridView.AllowUserToAddRows = false;
+            ChooseTourGridView.ReadOnly = true;
+            ChooseTourGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            ChooseTourGridView.ColumnHeadersVisible = true;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void QuitButton_Click(object sender, EventArgs e)
         {
-            dataGridView1.ColumnCount = 3;
-            dataGridView1.ColumnHeadersVisible = true;
+            if (rdr != null) rdr.Close();
+            if (conn != null) conn.Close();
+            this.Hide();
+            LoginForm newHeadForm = new LoginForm();
+            newHeadForm.Closed += (s, args) => this.Close();
+            newHeadForm.Show();
+        }
 
-            dataGridView1.Columns[0].Name = "ID";
-            dataGridView1.Columns[1].Name = "Название";
-            dataGridView1.Columns[2].Name = "Класс";
+        private void TourInfoButton_Click(object sender, EventArgs e)
+        {
+            HeaderLabel.Text = "Информация о турах";            
+            string[] headerNames;
+            string query = "", tableName = "";
+            int numOfColumns = 10;
+            ChooseTourGridView.ColumnCount = 10;
+
+            query = @"SELECT IdTour, Country, City, BeginDate, EndDate, Price, TourOpName, AirlineName, AcName, CompanyName
+                      FROM Tour, TourOperator, Airline, Accommodation, Insurance
+                      WHERE (TourOpId = IdTourOperator) AND (AirlineId = IdAirline) AND (AccommodationId = IdAccommodation) AND (InsuranceId = IdInsurance)";
+            headerNames = new string[] { "ID", "Страна", "Город, место", "Дата начала", "Дата окончания", "Цена", "Туроператор", "Авиакомпания", "Проживание", "Страховка" };
+            tableName = "TourTable";
+
 
             string way = "Data Source=VICKY-PC\\SQLEXPRESS;Initial Catalog=TravelAgency;Integrated Security=True";
-            SqlConnection conn = new SqlConnection(way);
+            conn = new SqlConnection(way);
             conn.Open();
-            SqlCommand firstcommand = new SqlCommand("select * from Airline order by IdAirline", conn);
-            SqlDataReader rdr = firstcommand.ExecuteReader();
+            SqlCommand firstcommand = new SqlCommand(query, conn);
+            rdr = firstcommand.ExecuteReader();
 
+            for (int i = 0; i < numOfColumns; ++i)
+                ChooseTourGridView.Columns[i].Name = headerNames[i];
+
+            string[] tableString = new string[numOfColumns];
             try
             {
                 while (rdr.Read())
                 {
-                    dataGridView1.Rows.Add(rdr[0], rdr[1], rdr[2]);
+                    for (int i = 0; i < numOfColumns; ++i)
+                    {
+                        if (i == 3 || i == 4)
+                        {
+                            DateTime tmp = Convert.ToDateTime(rdr[i]);
+                            tableString[i] = tmp.ToShortDateString();
+                        }
+                        else tableString[i] = rdr[i].ToString();
+                    }
+
+                    ChooseTourGridView.Rows.Add(tableString);
                 }
             }
-            finally
+            catch (Exception ex)
             {
-                // Always call Close when done reading.
-                rdr.Close();
+                MessageBox.Show("Ошибка!");
             }
 
-            if (conn != null) conn.Close();
         }
+
+        private void AirlineInfo_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
