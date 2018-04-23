@@ -140,10 +140,10 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox PasswordTextBox;
-        private System.Windows.Forms.TextBox LastNameTextBox;
         private System.Windows.Forms.ComboBox UserComboBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.TextBox LastNameTextBox;
     }
 }
 

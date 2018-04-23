@@ -33,6 +33,8 @@
             this.ChooseTourPage = new System.Windows.Forms.TabPage();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.ComboBoxCountry = new System.Windows.Forms.ComboBox();
             this.ExtendedSearchButton = new System.Windows.Forms.Button();
             this.numOfTouristsField = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
@@ -44,14 +46,24 @@
             this.TourInfoButton = new System.Windows.Forms.Button();
             this.HeaderLabel = new System.Windows.Forms.Label();
             this.QuitButton = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ComboBoxCountry = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.FormOrderPage = new System.Windows.Forms.TabPage();
+            this.TouristGridView = new System.Windows.Forms.DataGridView();
+            this.GroupGridView = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.OrdersGridView = new System.Windows.Forms.DataGridView();
+            this.label5 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ChooseTourGridView)).BeginInit();
             this.ManagerMenu.SuspendLayout();
             this.ChooseTourPage.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numOfTouristsField)).BeginInit();
+            this.FormOrderPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TouristGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GroupGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrdersGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // ChooseTourGridView
@@ -68,7 +80,7 @@
             // ManagerMenu
             // 
             this.ManagerMenu.Controls.Add(this.ChooseTourPage);
-            this.ManagerMenu.Controls.Add(this.tabPage2);
+            this.ManagerMenu.Controls.Add(this.FormOrderPage);
             this.ManagerMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ManagerMenu.Location = new System.Drawing.Point(0, 0);
             this.ManagerMenu.Name = "ManagerMenu";
@@ -117,6 +129,21 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(246, 360);
             this.panel1.TabIndex = 15;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(120, 77);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(121, 20);
+            this.dateTimePicker2.TabIndex = 22;
+            // 
+            // ComboBoxCountry
+            // 
+            this.ComboBoxCountry.FormattingEnabled = true;
+            this.ComboBoxCountry.Location = new System.Drawing.Point(120, 11);
+            this.ComboBoxCountry.Name = "ComboBoxCountry";
+            this.ComboBoxCountry.Size = new System.Drawing.Size(121, 21);
+            this.ComboBoxCountry.TabIndex = 21;
             // 
             // ExtendedSearchButton
             // 
@@ -216,30 +243,101 @@
             this.QuitButton.UseVisualStyleBackColor = true;
             this.QuitButton.Click += new System.EventHandler(this.QuitButton_Click);
             // 
-            // tabPage2
+            // FormOrderPage
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(853, 452);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.FormOrderPage.Controls.Add(this.button2);
+            this.FormOrderPage.Controls.Add(this.button1);
+            this.FormOrderPage.Controls.Add(this.label5);
+            this.FormOrderPage.Controls.Add(this.OrdersGridView);
+            this.FormOrderPage.Controls.Add(this.label3);
+            this.FormOrderPage.Controls.Add(this.label2);
+            this.FormOrderPage.Controls.Add(this.GroupGridView);
+            this.FormOrderPage.Controls.Add(this.TouristGridView);
+            this.FormOrderPage.Location = new System.Drawing.Point(4, 22);
+            this.FormOrderPage.Name = "FormOrderPage";
+            this.FormOrderPage.Padding = new System.Windows.Forms.Padding(3);
+            this.FormOrderPage.Size = new System.Drawing.Size(853, 452);
+            this.FormOrderPage.TabIndex = 1;
+            this.FormOrderPage.Text = "Формирование заказа";
+            this.FormOrderPage.UseVisualStyleBackColor = true;
             // 
-            // ComboBoxCountry
+            // TouristGridView
             // 
-            this.ComboBoxCountry.FormattingEnabled = true;
-            this.ComboBoxCountry.Location = new System.Drawing.Point(120, 11);
-            this.ComboBoxCountry.Name = "ComboBoxCountry";
-            this.ComboBoxCountry.Size = new System.Drawing.Size(121, 21);
-            this.ComboBoxCountry.TabIndex = 21;
+            this.TouristGridView.AllowUserToAddRows = false;
+            this.TouristGridView.AllowUserToDeleteRows = false;
+            this.TouristGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TouristGridView.ColumnHeadersVisible = false;
+            this.TouristGridView.Location = new System.Drawing.Point(18, 27);
+            this.TouristGridView.Name = "TouristGridView";
+            this.TouristGridView.Size = new System.Drawing.Size(368, 197);
+            this.TouristGridView.TabIndex = 2;
             // 
-            // dateTimePicker2
+            // GroupGridView
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(120, 77);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(121, 20);
-            this.dateTimePicker2.TabIndex = 22;
+            this.GroupGridView.AllowUserToAddRows = false;
+            this.GroupGridView.AllowUserToDeleteRows = false;
+            this.GroupGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GroupGridView.ColumnHeadersVisible = false;
+            this.GroupGridView.Location = new System.Drawing.Point(18, 252);
+            this.GroupGridView.Name = "GroupGridView";
+            this.GroupGridView.Size = new System.Drawing.Size(368, 197);
+            this.GroupGridView.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(15, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(129, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Информация о туристах";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 235);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(173, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Формирование группы туристов";
+            // 
+            // OrdersGridView
+            // 
+            this.OrdersGridView.AllowUserToAddRows = false;
+            this.OrdersGridView.AllowUserToDeleteRows = false;
+            this.OrdersGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.OrdersGridView.ColumnHeadersVisible = false;
+            this.OrdersGridView.Location = new System.Drawing.Point(461, 27);
+            this.OrdersGridView.Name = "OrdersGridView";
+            this.OrdersGridView.Size = new System.Drawing.Size(368, 197);
+            this.OrdersGridView.TabIndex = 6;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(458, 11);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(125, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Формирование заказа";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(725, 299);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(104, 32);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Оформить заказ";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(725, 252);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(99, 41);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Загрузить таблицы";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // ManagerForm
             // 
@@ -256,6 +354,11 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numOfTouristsField)).EndInit();
+            this.FormOrderPage.ResumeLayout(false);
+            this.FormOrderPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TouristGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GroupGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrdersGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -265,7 +368,7 @@
         private System.Windows.Forms.DataGridView ChooseTourGridView;
         private System.Windows.Forms.TabControl ManagerMenu;
         private System.Windows.Forms.TabPage ChooseTourPage;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage FormOrderPage;
         private System.Windows.Forms.Button QuitButton;
         private System.Windows.Forms.Label HeaderLabel;
         private System.Windows.Forms.Button TourInfoButton;
@@ -281,5 +384,13 @@
         public System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox ComboBoxCountry;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridView OrdersGridView;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridView GroupGridView;
+        private System.Windows.Forms.DataGridView TouristGridView;
+        private System.Windows.Forms.Button button2;
     }
 }

@@ -13,11 +13,13 @@ namespace TA_Interface
 {
     public partial class LoginForm : Form
     {
+        
         public LoginForm()
         {
             InitializeComponent();
             string[] users = { "Руководитель", "Менеджер", "Турист" };
             UserComboBox.Items.AddRange(users);
+            //touristForm = tour_form;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -80,10 +82,13 @@ namespace TA_Interface
                     }
                 case "Турист":
                     {
+                        TouristForm touristForm = new TouristForm(this);
                         this.Hide();
-                        TouristForm newTouristForm = new TouristForm();
-                        newTouristForm.Closed += (s, args) => this.Close();
-                        newTouristForm.Show();
+                        /*TouristFormMenu newTouristFormMenu = new TouristFormMenu(touristForm);
+                        newTouristFormMenu.Closed += (s, args) => this.Close();
+                        newTouristFormMenu.Show();*/
+                        touristForm.Closed += (s, args) => this.Close();
+                        touristForm.Show();
                         break;
                     }
             }
