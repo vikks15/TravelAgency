@@ -29,10 +29,19 @@
         private void InitializeComponent()
         {
             this.ReportsPage = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.report2Button = new System.Windows.Forms.Button();
+            this.report1Button = new System.Windows.Forms.Button();
+            this.report5Button = new System.Windows.Forms.Button();
+            this.report4Button = new System.Windows.Forms.Button();
+            this.report3Button = new System.Windows.Forms.Button();
+            this.ReportsComboBox = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.TourOpGridView = new System.Windows.Forms.DataGridView();
-            this.button2 = new System.Windows.Forms.Button();
             this.TablePage = new System.Windows.Forms.TabPage();
             this.QuitButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -53,10 +62,19 @@
             // 
             // ReportsPage
             // 
-            this.ReportsPage.Controls.Add(this.button1);
+            this.ReportsPage.Controls.Add(this.report2Button);
+            this.ReportsPage.Controls.Add(this.report1Button);
+            this.ReportsPage.Controls.Add(this.report5Button);
+            this.ReportsPage.Controls.Add(this.report4Button);
+            this.ReportsPage.Controls.Add(this.report3Button);
+            this.ReportsPage.Controls.Add(this.ReportsComboBox);
+            this.ReportsPage.Controls.Add(this.label5);
+            this.ReportsPage.Controls.Add(this.label2);
+            this.ReportsPage.Controls.Add(this.label4);
+            this.ReportsPage.Controls.Add(this.dateTimePicker2);
+            this.ReportsPage.Controls.Add(this.dateTimePicker1);
             this.ReportsPage.Controls.Add(this.label1);
             this.ReportsPage.Controls.Add(this.TourOpGridView);
-            this.ReportsPage.Controls.Add(this.button2);
             this.ReportsPage.Location = new System.Drawing.Point(4, 22);
             this.ReportsPage.Name = "ReportsPage";
             this.ReportsPage.Padding = new System.Windows.Forms.Padding(3);
@@ -64,41 +82,122 @@
             this.ReportsPage.TabIndex = 1;
             this.ReportsPage.Text = "Отчеты";
             this.ReportsPage.UseVisualStyleBackColor = true;
+            this.ReportsPage.Click += new System.EventHandler(this.ReportsPage_Click);
             // 
-            // button1
+            // report2Button
             // 
-            this.button1.Location = new System.Drawing.Point(670, 71);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(77, 36);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Добавить запись";
-            this.button1.UseVisualStyleBackColor = true;
+            this.report2Button.Location = new System.Drawing.Point(656, 195);
+            this.report2Button.Name = "report2Button";
+            this.report2Button.Size = new System.Drawing.Size(146, 36);
+            this.report2Button.TabIndex = 40;
+            this.report2Button.Text = "Количество заказов за период";
+            this.report2Button.UseVisualStyleBackColor = true;
+            this.report2Button.Click += new System.EventHandler(this.report2Button_Click_1);
+            // 
+            // report1Button
+            // 
+            this.report1Button.Location = new System.Drawing.Point(656, 152);
+            this.report1Button.Name = "report1Button";
+            this.report1Button.Size = new System.Drawing.Size(146, 36);
+            this.report1Button.TabIndex = 39;
+            this.report1Button.Text = "Заказы за период";
+            this.report1Button.UseVisualStyleBackColor = true;
+            this.report1Button.Click += new System.EventHandler(this.report1Button_Click_1);
+            // 
+            // report5Button
+            // 
+            this.report5Button.Location = new System.Drawing.Point(656, 332);
+            this.report5Button.Name = "report5Button";
+            this.report5Button.Size = new System.Drawing.Size(146, 38);
+            this.report5Button.TabIndex = 38;
+            this.report5Button.Text = "Доход по направлениям";
+            this.report5Button.UseVisualStyleBackColor = true;
+            this.report5Button.Click += new System.EventHandler(this.report5Button_Click);
+            // 
+            // report4Button
+            // 
+            this.report4Button.Location = new System.Drawing.Point(656, 285);
+            this.report4Button.Name = "report4Button";
+            this.report4Button.Size = new System.Drawing.Size(146, 38);
+            this.report4Button.TabIndex = 37;
+            this.report4Button.Text = "Доход за период";
+            this.report4Button.UseVisualStyleBackColor = true;
+            this.report4Button.Click += new System.EventHandler(this.report4Button_Click);
+            // 
+            // report3Button
+            // 
+            this.report3Button.Location = new System.Drawing.Point(656, 237);
+            this.report3Button.Name = "report3Button";
+            this.report3Button.Size = new System.Drawing.Size(146, 38);
+            this.report3Button.TabIndex = 36;
+            this.report3Button.Text = "Заказы по направлениям";
+            this.report3Button.UseVisualStyleBackColor = true;
+            this.report3Button.Click += new System.EventHandler(this.report3Button_Click_1);
+            // 
+            // ReportsComboBox
+            // 
+            this.ReportsComboBox.FormattingEnabled = true;
+            this.ReportsComboBox.Location = new System.Drawing.Point(681, 109);
+            this.ReportsComboBox.Name = "ReportsComboBox";
+            this.ReportsComboBox.Size = new System.Drawing.Size(121, 21);
+            this.ReportsComboBox.TabIndex = 32;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(595, 117);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(75, 13);
+            this.label5.TabIndex = 31;
+            this.label5.Text = "Направление";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(648, 82);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(19, 13);
+            this.label2.TabIndex = 30;
+            this.label2.Text = "по";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(616, 49);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(54, 13);
+            this.label4.TabIndex = 29;
+            this.label4.Text = "Период с";
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(681, 75);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(121, 20);
+            this.dateTimePicker2.TabIndex = 28;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(681, 49);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(121, 20);
+            this.dateTimePicker1.TabIndex = 27;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 20);
+            this.label1.Location = new System.Drawing.Point(21, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Запрос:";
+            this.label1.Size = new System.Drawing.Size(0, 13);
+            this.label1.TabIndex = 11;
             // 
             // TourOpGridView
             // 
             this.TourOpGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TourOpGridView.Location = new System.Drawing.Point(20, 55);
+            this.TourOpGridView.Location = new System.Drawing.Point(20, 41);
             this.TourOpGridView.Name = "TourOpGridView";
-            this.TourOpGridView.Size = new System.Drawing.Size(486, 173);
+            this.TourOpGridView.Size = new System.Drawing.Size(562, 350);
             this.TourOpGridView.TabIndex = 4;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(670, 127);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(77, 36);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Удалить запись";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // TablePage
             // 
@@ -230,10 +329,7 @@
         #endregion
 
         private System.Windows.Forms.TabPage ReportsPage;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView TourOpGridView;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TabPage TablePage;
         private System.Windows.Forms.Button QuitButton;
         private System.Windows.Forms.Panel panel1;
@@ -244,6 +340,18 @@
         private System.Windows.Forms.Label TableNameLabel;
         private System.Windows.Forms.DataGridView GridViewPage1;
         private System.Windows.Forms.TabControl Menu;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ComboBox ReportsComboBox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button report2Button;
+        private System.Windows.Forms.Button report1Button;
+        private System.Windows.Forms.Button report5Button;
+        private System.Windows.Forms.Button report4Button;
+        private System.Windows.Forms.Button report3Button;
 
     }
 }

@@ -38,6 +38,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -112,8 +113,19 @@
             // 
             this.PasswordTextBox.Location = new System.Drawing.Point(101, 74);
             this.PasswordTextBox.Name = "PasswordTextBox";
+            this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(104, 20);
             this.PasswordTextBox.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(54, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(146, 25);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Турагентство";
             // 
             // LoginForm
             // 
@@ -121,6 +133,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(252, 240);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button1);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -130,6 +143,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -144,6 +158,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.TextBox LastNameTextBox;
+        private System.Windows.Forms.Label label4;
     }
 }
 

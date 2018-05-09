@@ -17,16 +17,35 @@ namespace TA_Interface
         SqlDataAdapter adap;
         DataSet data;
         SqlCommandBuilder commBuild;
+        SqlDataReader dataReader;
         string tableName;
         string[] headerNames;
         string query = "";
         int numOfColumns = 0;
-
+      
         public HeadForm()
         {
             InitializeComponent();
-            string[] tables = { "Туры", "Проживание", "Авиакомпании", "Страхование" };
-            TableComboBox.Items.AddRange(tables);         
+            string[] tables = { "Туры", "Проживание", "Авиакомпании", "Страхование", "Сотрудники"};
+            TableComboBox.Items.AddRange(tables);
+
+            string way = "Data Source=VICKY-PC\\SQLEXPRESS;Initial Catalog=TravelAgency;Integrated Security=True";
+            string query1 = "SELECT DISTINCT Country FROM Tour";
+            List<string> resultList = new List<string>();
+
+            conn = new SqlConnection(way);
+            conn.Open();
+
+            SqlCommand command = new SqlCommand(query1, conn);
+            dataReader = command.ExecuteReader();
+            while (dataReader.Read())
+            {
+                resultList.Add(dataReader[0].ToString());
+            }
+            ReportsComboBox.Items.AddRange(resultList.ToArray());
+            resultList.Clear();
+            dataReader.Close();
+            //conn.Close();
         }
 
         private void Menu_SelectedIndexChanged()
@@ -58,7 +77,7 @@ namespace TA_Interface
                         break;
                     }
 
-                case "Проживаниие":
+                case "Проживание":
                     {
                         TableNameLabel.Text = "Проживание";
                         query = "SELECT * FROM Accommodation";
@@ -82,6 +101,15 @@ namespace TA_Interface
                         query = "SELECT * FROM Insurance Order By IdInsurance";
                         headerNames = new string[]{ "ID", "Название компании", "Тип тура", "Категория страхования" };
                         tableName = "InsuranceTable";
+                        numOfColumns = 4;                        
+                        break;
+                    }
+                case "Сотрудники":
+                    {
+                        TableNameLabel.Text = "Сотрудники";
+                        query = "SELECT * FROM Staff Order By IdLoginPassword";
+                        headerNames = new string[] { "ID", "Должность", "Имя", "Фамилия" };
+                        tableName = "StaffTable";
                         numOfColumns = 4;                        
                         break;
                     }
@@ -146,8 +174,7 @@ namespace TA_Interface
             }
 
             try
-            {
-                
+            {                
                 commBuild = new SqlCommandBuilder(adap);
                 adap.Update(data, tableName);
                 //---------------Обновление------------------------------
@@ -175,5 +202,109 @@ namespace TA_Interface
             newHeadForm.Closed += (s, args) => this.Close();
             newHeadForm.Show();
         }
+
+        private void ReportsPage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }     
+
+        private void report1Button_Click_1(object sender, EventArgs e)
+        {
+            label1.Text = "Заказы за период";
+            string fromDate = dateTimePicker1.Value.ToString("yyyyMMdd");
+            string toDate = dateTimePicker2.Value.ToString("yyyyMMdd");
+            headerNames = new string[] { "ID", "Страна", "Город", "Дата заказа", "Статус оплаты" };
+            query = @"SELECT IdOrders, Country, City, OrderDate, PaymentStatus FROM Orders, Tour
+            WHERE (TourId=IdTour) AND (OrderDate BETWEEN '" + fromDate + "' AND '" + toDate + "')";
+
+            adap = new SqlDataAdapter(query, conn);
+            data = new System.Data.DataSet();
+            adap.Fill(data, "OrdersCount");
+            TourOpGridView.DataSource = data.Tables[0];
+            TourOpGridView.ReadOnly = true;
+            for (int i = 0; i < 5; ++i)
+                TourOpGridView.Columns[i].HeaderText = headerNames[i];
+            conn.Close();
+
+        }
+
+        private void report2Button_Click_1(object sender, EventArgs e)
+        {
+            label1.Text = "Количество заказов за период";
+            headerNames = new string[] { "Количество заказов" };
+            string fromDate = dateTimePicker1.Value.ToString("yyyyMMdd");
+            string toDate = dateTimePicker2.Value.ToString("yyyyMMdd");
+            query = @"SELECT COUNT(IdOrders) AS SumOfOrders FROM Orders 
+            WHERE (PaymentDate IS NOT NULL) AND (PaymentDate > '" + fromDate + "') AND (PaymentDate < '" + toDate + "')";
+
+            adap = new SqlDataAdapter(query, conn);
+            data = new System.Data.DataSet();
+            adap.Fill(data, "OrdersCount");
+            TourOpGridView.DataSource = data.Tables[0];
+            TourOpGridView.ReadOnly = true;
+            for (int i = 0; i < 1; ++i)
+                TourOpGridView.Columns[i].HeaderText = headerNames[i];
+            conn.Close();            
+        }
+
+        private void report3Button_Click_1(object sender, EventArgs e)
+        {
+            label1.Text = "Оплаченные заказы по направлениям";
+            headerNames = new string[] { "ID", "Страна", "Город", "Дата начала тура", "Дата окончания тура", "Дата заказа" };
+
+            query = @"SELECT IdOrders, Country, City, BeginDate, EndDate, OrderDate
+            FROM Orders, Tour
+            WHERE (TourId=IdTour) AND (Country='" + ReportsComboBox.Text + "') AND (PaymentDate IS NOT NULL)";
+            adap = new SqlDataAdapter(query, conn);
+            data = new System.Data.DataSet();
+            adap.Fill(data, "OrdersByCountry");
+            TourOpGridView.DataSource = data.Tables[0];
+            TourOpGridView.ReadOnly = true;
+            for (int i = 0; i < 6; ++i)
+                TourOpGridView.Columns[i].HeaderText = headerNames[i];
+            conn.Close();
+        }
+        
+        private void report4Button_Click(object sender, EventArgs e)
+        {
+            label1.Text = "Доход за период";
+            headerNames = new string[] { "Количество заказов", "Страна", "Общая сумма" };
+
+            query = @"SELECT COUNT(IdOrders) as NumOfOrders, Country, SUM(NumberOfTourists*Price) as TotalPrice
+            FROM TouristGroup, Orders, Tour
+            WHERE (IdTour=TourId) AND (GroupId=IdGroup)
+            GROUP BY Country";
+            adap = new SqlDataAdapter(query, conn);
+            data = new System.Data.DataSet();
+            adap.Fill(data, "OrdersByCountry");
+            TourOpGridView.DataSource = data.Tables[0];
+            TourOpGridView.ReadOnly = true;
+            for (int i = 0; i < 3; ++i)
+                TourOpGridView.Columns[i].HeaderText = headerNames[i];
+            conn.Close();
+        }
+
+        private void report5Button_Click(object sender, EventArgs e)
+        {
+            label1.Text = "Доход по направлению";
+            headerNames = new string[] { "Количество заказов", "Страна", "Общая сумма"};
+
+            query = @"SELECT COUNT(IdOrders) as NumOfOrders, Country, SUM(NumberOfTourists*Price) as TotalPrice
+            FROM TouristGroup, Orders, Tour
+            WHERE (Country='" + ReportsComboBox.Text + "') AND (IdTour=TourId) AND (GroupId=IdGroup) GROUP BY Country";
+            adap = new SqlDataAdapter(query, conn);
+            data = new System.Data.DataSet();
+            adap.Fill(data, "OrdersByCountry");
+            TourOpGridView.DataSource = data.Tables[0];
+            TourOpGridView.ReadOnly = true;
+            for (int i = 0; i < 3; ++i)
+                TourOpGridView.Columns[i].HeaderText = headerNames[i];
+            conn.Close();
+        } 
     }
 }
