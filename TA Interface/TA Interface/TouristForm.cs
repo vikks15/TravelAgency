@@ -13,10 +13,13 @@ namespace TA_Interface
 {
     public partial class TouristForm : Form
     {
-
         LoginForm logForm;
         SqlConnection conn;
         SqlDataReader dataReader;
+        SqlDataAdapter adap;
+        DataSet data;
+        string[] headerNames;
+        string query = "";
 
         public TouristForm(LoginForm log_f)
         {
@@ -28,10 +31,11 @@ namespace TA_Interface
             string[] headerNames;
             int numOfColumns = 7;
             OrdersGridView.ColumnCount = 7;
+            string groupIdNum = logForm.PasswordTextBox.Text;
 
-            string query = @"SELECT GroupId, Country, City, BeginDate, EndDate, AcName, (Price*2) AS TotalPrice
-                             FROM Tour, Accommodation, Orders
-                             WHERE GroupId = '2' AND TourId=IdTour AND AccommodationId=IdAccommodation";
+            string query = @"SELECT GroupId, Country, City, BeginDate, EndDate, AcName, (Price * NumberOfTourists) AS TotalPrice
+            FROM Tour, Accommodation, Orders, TouristGroup
+            WHERE (GroupId = " + groupIdNum +") AND (TourId=IdTour) AND (AccommodationId=IdAccommodation) AND (IdGroup=GroupId)";
 
             headerNames = new string[] { "ID", "Страна", "Город, место", "Дата начала", "Дата окончания", "Место проживания", "Итоговая цена"};
 
@@ -67,8 +71,7 @@ namespace TA_Interface
                 MessageBox.Show("Ошибка!");
             }
             conn.Close();
-            dataReader.Close();
-            
+            dataReader.Close();            
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -77,6 +80,48 @@ namespace TA_Interface
             LoginForm newForm = new LoginForm();
             newForm.Closed += (s, args) => this.Close();
             newForm.Show();
+        }
+
+        private void TouristInfoTab_Click(object sender, EventArgs e)
+        {
+            TouristGridView.ColumnHeadersVisible = true;
+            int numOfColumns = 8;
+            string groupIdNum = logForm.PasswordTextBox.Text;
+            headerNames = new string[] { "ID", "Номер группы", "Фамилия", "Имя", "Номер паспорта", "Дата рождения", "Телефон", "Почта" };
+            query = "SELECT * FROM Tourist WHERE GroupId = " + groupIdNum;
+            adap = new SqlDataAdapter(query, conn);
+            data = new System.Data.DataSet();
+            adap.Fill(data, "Tourists");
+            TouristGridView.DataSource = data.Tables[0];
+            TouristGridView.Columns[0].ReadOnly = true;
+            for (int i = 0; i < numOfColumns; ++i)
+                TouristGridView.Columns[i].HeaderText = headerNames[i];
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            int numOfColumns = 8;
+            try
+            {                
+                SqlCommandBuilder commBuild = new SqlCommandBuilder(adap);
+                adap.Update(data, "Tourists");
+
+                //---------------Обновление------------------------------
+                TouristGridView.DataSource = null;
+                adap = new SqlDataAdapter(query, conn);
+                data = new System.Data.DataSet();
+                adap.Fill(data, "Tourists");
+                TouristGridView.DataSource = data.Tables[0];
+                for (int i = 0; i < numOfColumns; ++i)
+                    TouristGridView.Columns[i].HeaderText = headerNames[i];
+                //---------------------------------------------------------
+                MessageBox.Show("Данные сохранены!");
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка сохранения!");
+            }
+        
         }
     }
 }

@@ -15,6 +15,10 @@ namespace TA_Interface
     {
         SqlConnection conn;
         SqlDataReader dataReader;
+        SqlDataAdapter adap, adap1, adap2, adap3;
+        DataSet data, data1, data2, data3;
+        string[] headerNames;
+        string query = "";
         public ManagerForm()
         {
             InitializeComponent();
@@ -86,7 +90,7 @@ namespace TA_Interface
             {
                 MessageBox.Show("Ошибка!");
             }
-            conn.Close();
+            //conn.Close();
             dataReader.Close();
         }    
 
@@ -146,12 +150,10 @@ namespace TA_Interface
             dataReader.Close();
         }
 
-
         private void ExtendedSearchButton_Click(object sender, EventArgs e)
         {
             ExtendedSearch window = new ExtendedSearch(this);
             window.Show();
-
         }
 
         private void QuitButton_Click(object sender, EventArgs e)
@@ -162,6 +164,66 @@ namespace TA_Interface
             LoginForm newHeadForm = new LoginForm();
             newHeadForm.Closed += (s, args) => this.Close();
             newHeadForm.Show();
+        }  
+
+        private void LoadTablesButton_Click(object sender, EventArgs e)
+        {
+            TouristGridView.ColumnHeadersVisible = true; 
+            int numOfColumns = 8;
+            headerNames = new string[] { "ID", "Номер группы", "Фамилия", "Имя", "Номер паспорта","Дата рождения","Телефон","Почта"};
+            query = "SELECT * FROM Tourist";
+            adap1 = new SqlDataAdapter(query, conn);
+            data = new System.Data.DataSet();
+            adap1.Fill(data, "Tourists");
+            TouristGridView.DataSource = data.Tables[0];
+            TouristGridView.Columns[0].ReadOnly = true;
+            for (int i = 0; i < numOfColumns; ++i)
+                TouristGridView.Columns[i].HeaderText = headerNames[i];
+            
+            //---------------------------------------------------------------
+            GroupGridView.ColumnHeadersVisible = true; 
+            numOfColumns = 6;
+            headerNames = new string[] { "ID", "Количество туристов", "Фамилия заказчика", "Имя заказчика", "Телефон заказчика", "Почта заказчика"};
+            query = "SELECT * FROM TouristGroup";
+            adap2 = new SqlDataAdapter(query, conn);
+            data = new System.Data.DataSet();
+            adap2.Fill(data, "TouristGroups");
+            GroupGridView.DataSource = data.Tables[0];
+            GroupGridView.Columns[0].ReadOnly = true;
+            for (int i = 0; i < numOfColumns; ++i)
+                GroupGridView.Columns[i].HeaderText = headerNames[i];
+
+            //---------------------------------------------------------------
+            OrdersGridView.ColumnHeadersVisible = true; 
+            numOfColumns = 7;
+            headerNames = new string[] { "ID", "ID Тура", "Номер группы", "Дата заказа", "Дата оплаты", "Статус", "Статус оплаты" };
+            query = "SELECT * FROM Orders";
+            adap = new SqlDataAdapter(query, conn);
+            data = new System.Data.DataSet();
+            adap.Fill(data, "Orders");
+            OrdersGridView.DataSource = data.Tables[0];
+            OrdersGridView.Columns[0].ReadOnly = true;
+            for (int i = 0; i < numOfColumns; ++i)
+                OrdersGridView.Columns[i].HeaderText = headerNames[i];
+        }
+
+        private void MakeOrderButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlCommandBuilder commBuild3 = new SqlCommandBuilder(adap2);
+                adap2.Update(data, "TouristGroups");
+                SqlCommandBuilder commBuild2 = new SqlCommandBuilder(adap1);
+                adap1.Update(data, "Tourist");   
+                SqlCommandBuilder commBuild= new SqlCommandBuilder(adap);
+                adap.Update(data, "Orders");    
+                MessageBox.Show("Данные сохранены!");
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка оформения заказа!");
+            }
+        
         }
 
     }

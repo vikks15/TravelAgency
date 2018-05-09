@@ -22,7 +22,6 @@ SELECT COUNT(IdOrders) as NumOfOrders, Country, SUM(NumberOfTourists*Price) as T
 FROM TouristGroup, Orders, Tour
 WHERE (IdTour=TourId) AND (GroupId=IdGroup)
 GROUP BY Country
-
 -- -----------Income by country-----------------------
 Select * FROM TouristGroup
 Select * FROM Orders
@@ -31,4 +30,10 @@ SELECT COUNT(IdOrders) as NumOfOrders, Country, SUM(NumberOfTourists*Price) as T
 FROM TouristGroup, Orders, Tour
 WHERE (Country='Турция') AND (IdTour=TourId) AND (GroupId=IdGroup)
 GROUP BY Country
+-- ----------------------------------------------------------------------------
+SELECT * FROM Tourist
 
+-- ------------------------------Tourist query---------------------------
+SELECT GroupId, Country, City, BeginDate, EndDate, AcName, (Price * NumberOfTourists) AS TotalPrice
+FROM Tour, Accommodation, Orders, TouristGroup
+WHERE (GroupId = 1) AND (TourId=IdTour) AND (AccommodationId=IdAccommodation) AND (IdGroup=GroupId)

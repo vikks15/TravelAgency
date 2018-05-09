@@ -230,7 +230,6 @@ namespace TA_Interface
             for (int i = 0; i < 5; ++i)
                 TourOpGridView.Columns[i].HeaderText = headerNames[i];
             conn.Close();
-
         }
 
         private void report2Button_Click_1(object sender, EventArgs e)
